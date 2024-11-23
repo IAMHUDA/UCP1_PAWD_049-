@@ -25,7 +25,7 @@ hasil edit database
 hapus database
 ![hapus data cupang](https://github.com/user-attachments/assets/8e87fec1-3bf7-4a88-a896-e2432e0fe1ca)
 ![Screenshot 2024-11-23 133211](https://github.com/user-attachments/assets/2711e692-66f6-430b-8561-64eb82fa2d4e)
-![Uploading hasilhapusphpmyadmin.png…]()
+![hasilhapusphpmyadmin](https://github.com/user-attachments/assets/6f0b0e56-833f-4ed9-bc3c-b378d02523ba)
 
 
 
