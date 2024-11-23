@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database/db");
 
-// Menampilkan halaman daftar pasien
+
 router.get("/", (req, res) => {
   db.query("SELECT * FROM pasien", (err, pasien) => {
     if (err) {
@@ -15,12 +15,12 @@ router.get("/", (req, res) => {
   });
 });
 
-// Menampilkan form tambah pasien
+
 router.get("/add", (req, res) => {
   res.render("addpasien", { title: "Tambah Pasien" });
 });
 
-// Menambahkan data pasien
+
 router.post("/add", (req, res) => {
   const { nama, jeniskelamin, notelpon } = req.body;
 
@@ -33,12 +33,12 @@ router.post("/add", (req, res) => {
     [nama.trim(), jeniskelamin.trim(), notelpon.trim()],
     (err, result) => {
       if (err) return res.status(500).send("Internal server error");
-      res.redirect("/pasien"); // Redirect ke halaman daftar pasien
+      res.redirect("/pasien"); 
     }
   );
 });
 
-// PUT request: Mengupdate data pasien berdasarkan ID
+
 router.put("/:id", (req, res) => {
   const { nama, jeniskelamin, notelpon } = req.body;
 
@@ -59,7 +59,7 @@ router.put("/:id", (req, res) => {
   );
 });
 
-// DELETE request: Menghapus data pasien berdasarkan ID
+
 router.delete("/:id", (req, res) => {
   db.query(
     "DELETE FROM pasien WHERE id = ?",
@@ -69,7 +69,7 @@ router.delete("/:id", (req, res) => {
       if (result.affectedRows === 0) {
         return res.status(404).send("Data tidak ditemukan");
       }
-      res.status(204).send(); // No content
+      res.status(204).send(); 
     }
   );
 });

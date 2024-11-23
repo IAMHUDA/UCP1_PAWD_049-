@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-// Simulating an array of pasien data (replace with your actual database or data source)
 let pasienData = [
   { id: 1, nama: 'John Doe', jeniskelamin: 'Laki-laki', notelpon: '081234567890' },
 ];
 
-// Route to display the list of patients (Local)
+
 router.get('/', (req, res) => {
   res.render('local', {
     pasien: pasienData,
@@ -14,7 +13,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// Route to render the add form
+
 router.get('/add', (req, res) => {
   res.render('addpasienlocal', {
     title: 'Tambah Pasien Baru'
