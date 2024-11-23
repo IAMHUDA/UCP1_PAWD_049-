@@ -1,0 +1,127 @@
+<%- include('partials/header') %>
+
+<h1>Daftar Pasien di database</h1>
+
+<!-- Tombol untuk menambahkan pasien -->
+<a href="/pasien/add" class="btn btn-success mb-3">Tambah Pasien</a>
+
+<!-- Tabel Daftar Pasien -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nama</th>
+      <th>Jenis Kelamin</th>
+      <th>Nomor Telepon</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pasien.forEach(item => { %>
+      <tr>
+        <td><%= item.nama %></td>
+        <td><%= item.jeniskelamin %></td>
+        <td><%= item.notelpon %></td>
+        <td>
+          <button class="btn btn-warning btn-edit" data-id="<%= item.id %>" data-nama="<%= item.nama %>" data-jeniskelamin="<%= item.jeniskelamin %>" data-notelpon="<%= item.notelpon %>">Edit</button>
+          <button class="btn btn-danger btn-delete" data-id="<%= item.id %>">Hapus</button>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  // Edit pasien menggunakan SweetAlert
+  document.querySelectorAll('.btn-edit').forEach(button => {
+    button.addEventListener('click', (event) => {
+      const id = event.target.getAttribute('data-id');
+      const nama = event.target.getAttribute('data-nama');
+      const jeniskelamin = event.target.getAttribute('data-jeniskelamin');
+      const notelpon = event.target.getAttribute('data-notelpon');
+      
+      Swal.fire({
+        title: 'Edit Pasien',
+        html: `  
+          <input type="text" id="editNama" class="swal2-input" value="${nama}" placeholder="Nama Pasien">
+          <select id="editJenisKelamin" class="swal2-input">
+            <option value="Laki-laki" ${jeniskelamin === 'Laki-laki' ? 'selected' : ''}>Laki-laki</option>
+            <option value="Perempuan" ${jeniskelamin === 'Perempuan' ? 'selected' : ''}>Perempuan</option>
+          </select>
+          <input type="text" id="editNoTelpon" class="swal2-input" value="${notelpon}" placeholder="Nomor Telepon">
+        `,
+        confirmButtonText: 'Update',
+        showCancelButton: true,
+        preConfirm: () => {
+          const updatedNama = document.getElementById('editNama').value;
+          const updatedJenisKelamin = document.getElementById('editJenisKelamin').value;
+          const updatedNoTelpon = document.getElementById('editNoTelpon').value;
+
+          if (!updatedNama || !updatedJenisKelamin || !updatedNoTelpon) {
+            Swal.showValidationMessage('Nama, Jenis Kelamin, dan Nomor Telepon harus diisi');
+            return false;
+          }
+
+          return { id, nama: updatedNama, jeniskelamin: updatedJenisKelamin, notelpon: updatedNoTelpon };
+        }
+      }).then(result => {
+        if (result.isConfirmed) {
+          const { id, nama, jeniskelamin, notelpon } = result.value;
+          
+          // Kirim request PUT ke server untuk memperbarui pasien
+          fetch(`/pasien/${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nama, jeniskelamin, notelpon })
+          })
+          .then(response => {
+            if (response.ok) {
+              Swal.fire('Berhasil!', 'Pasien berhasil diperbarui!', 'success').then(() => {
+                location.reload(); // Reload halaman setelah update
+              });
+            } else {
+              Swal.fire('Gagal!', 'Gagal memperbarui pasien.', 'error');
+            }
+          });
+        }
+      });
+    });
+  });
+
+  // Hapus pasien menggunakan SweetAlert
+  document.querySelectorAll('.btn-delete').forEach(button => {
+    button.addEventListener('click', (event) => {
+      const id = event.target.getAttribute('data-id');
+
+      Swal.fire({
+        title: 'Apakah Anda yakin?',
+        text: "Data ini akan dihapus permanen!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Hapus',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`/pasien/${id}`, {
+            method: 'DELETE',
+          })
+          .then(response => {
+            if (response.ok) {
+              Swal.fire('Dihapus!', 'Pasien berhasil dihapus!', 'success').then(() => {
+                location.reload(); // Reload halaman setelah penghapusan
+              });
+            } else {
+              Swal.fire('Gagal!', 'Gagal menghapus pasien.', 'error');
+            }
+          });
+        }
+      });
+    });
+  });
+</script>
+
+<%- include('partials/footer') %>

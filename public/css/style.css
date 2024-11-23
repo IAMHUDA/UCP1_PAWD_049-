@@ -1,0 +1,220 @@
+
+
+
+@font-face {
+  font-family: 'EduAustraliaVICWA';
+  src: url('/fonts/EduAUVICWANTPre-SemiBold.ttf') format('truetype');
+}
+
+
+
+
+.hero .container h1 {
+    animation: fadeInDown 1s ease-in-out;
+  }
+  
+  .hero .container p {
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+  /* Keyframe for creating a wave-like color animation */
+  @keyframes waveText {
+    0% {
+      color: #FF0000;
+    }
+    14% {
+      color: #FF7F00;
+    }
+    28% {
+      color: #FFFF00;
+    }
+    42% {
+      color: #00FF00;
+    }
+    57% {
+      color: #0000FF;
+    }
+    71% {
+      color: #4B0082;
+    }
+    85% {
+      color: #8B00FF;
+    }
+    100% {
+      color: #FF0000;
+    }
+  }
+
+  /* Apply the wave animation to the heading text */
+  .animated-wave {
+    display: inline-block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    animation: waveText 4s ease-in-out infinite;
+  }
+
+  /* Create the wave-like effect by applying different animation delays to each letter */
+  .animated-wave span {
+    display: inline-block;
+    animation: waveText 4s ease-in-out infinite;
+  }
+
+  /* Apply delays to simulate wave effect */
+  .animated-wave span:nth-child(1) { animation-delay: 0s; }
+  .animated-wave span:nth-child(2) { animation-delay: 0.2s; }
+  .animated-wave span:nth-child(3) { animation-delay: 0.4s; }
+  .animated-wave span:nth-child(4) { animation-delay: 0.6s; }
+  .animated-wave span:nth-child(5) { animation-delay: 0.8s; }
+  .animated-wave span:nth-child(6) { animation-delay: 1s; }
+  .animated-wave span:nth-child(7) { animation-delay: 1.2s; }
+  .animated-wave span:nth-child(8) { animation-delay: 1.4s; }
+  /* Continue for the rest of the letters as necessary */
+
+
+
+/* Keyframes for wave animation (Rainbow text) */
+/* Keyframes for wave animation (Rainbow text) */
+@keyframes waveText {
+  0% {
+    color: #FF0000;
+  }
+  14% {
+    color: #FF7F00;
+  }
+  28% {
+    color: #FFFF00;
+  }
+  42% {
+    color: #00FF00;
+  }
+  57% {
+    color: #0000FF;
+  }
+  71% {
+    color: #4B0082;
+  }
+  85% {
+    color: #8B00FF;
+  }
+  100% {
+    color: #FF0000;
+  }
+}
+
+/* Apply wave animation to the heading text */
+.animated-wave {
+  display: inline-block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  animation: waveText 4s ease-in-out infinite;
+}
+
+/* Keyframe for blinking effect (Hazard light style) */
+@keyframes blinkRedYellow {
+  0%, 100% {
+    background-color: #FF0000; /* Red for right blink */
+  }
+  25% {
+    background-color: #FFFF00; /* Yellow for left blink */
+  }
+  50% {
+    background-color: #FF7F00; /* Orange for right blink */
+  }
+  75% {
+    background-color: #FFFF00; /* Yellow for left blink */
+  }
+}
+
+@keyframes blinkGreenBlue {
+  0%, 100% {
+    background-color: #00FF00; /* Green for right blink */
+  }
+  25% {
+    background-color: #0000FF; /* Blue for left blink */
+  }
+  50% {
+    background-color: #00FF7F; /* Light green for right blink */
+  }
+  75% {
+    background-color: #0000FF; /* Blue for left blink */
+  }
+}
+
+/* Button with Red and Yellow Blinking Effect */
+.animated-button-red-yellow {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #FF0000; /* Start with red */
+  border-radius: 50px;
+  border: 2px solid #FF0000; /* Red border */
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.5), 0 0 80px rgba(255, 0, 0, 0.9); /* Stronger, more spread-out glowing border shadow */
+  text-decoration: none;
+  animation: blinkRedYellow 2s ease-in-out infinite; /* Red and Yellow Blink */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Button with Green and Blue Blinking Effect */
+.animated-button-green-blue {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #00FF00; /* Start with green */
+  border-radius: 50px;
+  border: 2px solid #00FF00; /* Green border */
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.7), 0 0 40px rgba(0, 255, 0, 0.5), 0 0 80px rgba(0, 255, 0, 0.9); /* Stronger, more spread-out glowing border shadow */
+  text-decoration: none;
+  animation: blinkGreenBlue 2s ease-in-out infinite; /* Green and Blue Blink */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover effect for buttons */
+.animated-button-red-yellow:hover,
+.animated-button-green-blue:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 100px rgba(255, 0, 0, 0.7), 0 0 200px rgba(255, 0, 0, 1); /* Increased glow spread on hover */
+}
+
+/* Active state for buttons */
+.animated-button-red-yellow:active,
+.animated-button-green-blue:active {
+  transform: scale(0.98);
+}
+
+/* Extra glow effect when buttons are active */
+.animated-button-red-yellow:active {
+  box-shadow: 0 0 100px rgba(255, 0, 0, 1), 0 0 150px rgba(255, 0, 0, 0.8), 0 0 200px rgba(255, 0, 0, 1);
+}
+
+.animated-button-green-blue:active {
+  box-shadow: 0 0 100px rgba(0, 255, 0, 1), 0 0 150px rgba(0, 255, 0, 0.8), 0 0 200px rgba(0, 255, 0, 1);
+}
